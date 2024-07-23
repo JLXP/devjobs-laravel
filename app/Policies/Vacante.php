@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Vacante;
+use App\Models\Vacante as VacanteModel;
 use Illuminate\Auth\Access\Response;
 
 class Vacante
@@ -11,15 +11,15 @@ class Vacante
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user):bool
     {
-        //
+        return $user->rol === 2;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Vacante $vacante): bool
+    public function view(User $user, VacanteModel $vacante)
     {
         //
     }
@@ -27,15 +27,15 @@ class Vacante
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user)
     {
-        //
+        return $user->rol === 2;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Vacante $vacante): bool
+    public function update(User $user, VacanteModel $vacante): bool
     {
         //
         return $user->id === $vacante->user_id;
@@ -44,7 +44,7 @@ class Vacante
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Vacante $vacante): bool
+    public function delete(User $user, VacanteModel $vacante)
     {
         //
     }
@@ -52,7 +52,7 @@ class Vacante
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Vacante $vacante): bool
+    public function restore(User $user, VacanteModel $vacante)
     {
         //
     }
@@ -60,7 +60,7 @@ class Vacante
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Vacante $vacante): bool
+    public function forceDelete(User $user, VacanteModel $vacante)
     {
         //
     }
